@@ -37,6 +37,7 @@
     <protected-broadcast android:name="android.intent.action.SIG_STR" />
     <protected-broadcast android:name="android.intent.action.ANY_DATA_STATE" />
     <protected-broadcast android:name="android.intent.action.DATA_CONNECTION_FAILED" />
+    <protected-broadcast android:name="android.intent.action.DATA_STALL_DETECTED" />
     <protected-broadcast android:name="android.intent.action.SIM_STATE_CHANGED" />
     <protected-broadcast android:name="android.intent.action.NETWORK_SET_TIME" />
     <protected-broadcast android:name="android.intent.action.NETWORK_SET_TIMEZONE" />
@@ -66,6 +67,11 @@
     <protected-broadcast android:name= "com.android.internal.telephony.CARRIER_SIGNAL_DEFAULT_NETWORK_AVAILABLE" />
     <protected-broadcast android:name= "com.android.internal.provider.action.VOICEMAIL_SMS_RECEIVED" />
     <protected-broadcast android:name= "com.android.intent.isim_refresh" />
+    <protected-broadcast android:name= "com.android.ims.ACTION_RCS_SERVICE_AVAILABLE" />
+    <protected-broadcast android:name= "com.android.ims.ACTION_RCS_SERVICE_UNAVAILABLE" />
+    <protected-broadcast android:name= "com.android.ims.ACTION_RCS_SERVICE_DIED" />
+    <protected-broadcast android:name= "com.android.ims.ACTION_PRESENCE_CHANGED" />
+    <protected-broadcast android:name= "com.android.ims.ACTION_PUBLISH_STATUS_CHANGED" />
     <protected-broadcast android:name= "com.android.ims.IMS_SERVICE_UP" />
     <protected-broadcast android:name= "com.android.ims.IMS_SERVICE_DOWN" />
     <protected-broadcast android:name= "com.android.ims.IMS_INCOMING_CALL" />
@@ -329,6 +335,15 @@
 
         <activity android:name="GsmUmtsAdditionalCallOptions"
                 android:label="@string/labelGSMMore"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:theme="@style/SettingsLight">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="CallForwardType"
+                android:label="@string/call_forward_option"
                 android:configChanges="orientation|screenSize|keyboardHidden"
                 android:theme="@style/SettingsLight">
             <intent-filter>
