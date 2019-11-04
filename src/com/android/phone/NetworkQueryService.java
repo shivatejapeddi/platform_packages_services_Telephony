@@ -79,7 +79,7 @@ public class NetworkQueryService extends Service {
     private static final boolean INCREMENTAL_RESULTS = true;
     // The parameters below are in seconds
     private static final int SEARCH_PERIODICITY_SEC = 5;
-    private static final int MAX_SEARCH_TIME_SEC = 300;
+    private static final int MAX_SEARCH_TIME_SEC = 254;
     private static final int INCREMENTAL_RESULTS_PERIODICITY_SEC = 3;
 
     /**
@@ -194,6 +194,14 @@ public class NetworkQueryService extends Service {
 
                     switch (mState) {
                         case QUERY_READY:
+
+                            final boolean isRequestNetworkScanDisabled =
+                                    getApplicationContext().getResources().getBoolean(
+                                            R.bool.config_disable_TelephonyManager_network_scan);
+                            if (isRequestNetworkScanDisabled && isIncrementalResult) {
+                                if (DBG) log("network scan via TelephonyManager is disabled");
+                                isIncrementalResult = false;
+                            }
 
                             if (isIncrementalResult) {
                                 if (DBG) log("start network scan via TelephonManager");
